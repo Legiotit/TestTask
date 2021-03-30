@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс отвечающий за передвижение игрока
+/// </summary>
 public class Move : MonoBehaviour
 {
-	public float speed = 1.5f;
-
-	public Transform head;
-
+	[SerializeField]
+	float speed = 1.5f;
+	
 	private Vector3 direction;
 	private float h, v;
 	private Rigidbody body;
@@ -38,12 +40,12 @@ public class Move : MonoBehaviour
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
 
-		float rotationX = head.localEulerAngles.y + Input.GetAxis("Mouse X");
+		float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X");
 		rotationY += Input.GetAxis("Mouse Y");
-		head.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+		transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
 
 		direction = new Vector3(h, 0, v);
-		direction = head.TransformDirection(direction);
+		direction = transform.TransformDirection(direction);
 		direction = new Vector3(direction.x, 0, direction.z);
 
 	}

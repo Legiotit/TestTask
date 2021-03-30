@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс отвечающий за управление в главом меню
+/// </summary>
 public class Menu : MonoBehaviour
 {
     [SerializeField]
@@ -48,6 +51,9 @@ public class Menu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Удалить данные пользователя
+    /// </summary>
     public void DeleteUserData()
     {
         UserData.DeleteUserData();
@@ -73,6 +79,9 @@ public class Menu : MonoBehaviour
         ErrorImage.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Сохранить нового пользователя
+    /// </summary>
     public bool SaveNewUserData()
     {
         if (inputName != null && inputName.GetComponent<InputField>() && inputMail != null && inputMail.GetComponent<InputField>())
@@ -94,6 +103,9 @@ public class Menu : MonoBehaviour
         canvasCreateUserMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// Начать игру
+    /// </summary>
     public void StartLevel()
     {
         if (LoadLevel != null)

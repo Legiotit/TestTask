@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс отвечающий за управление в игровом поле
+/// </summary>
 public class Level : MonoBehaviour
 {
     public int score { get; private set; }
 
     [SerializeField]
     GameObject tilePrefab;
+
     [SerializeField]
     GameObject money;
+
     [SerializeField]
     GameObject HeroPrefab;
 
@@ -32,7 +37,12 @@ public class Level : MonoBehaviour
         StartLevel(Random.Range(15,20),20,20);
     }
 
-
+    /// <summary>
+    /// Создание Монет на игровом поле
+    /// </summary>
+    /// <param name="numberMoney">Количество монет генерируемых на поле</param>
+    /// <param name="length">Длинна поля</param>
+    /// <param name="width">Ширина поля</param>
     public void StartLevel(int numberMoney, int length, int width)
     {
         GenerateWorld(width, length);
@@ -41,6 +51,11 @@ public class Level : MonoBehaviour
         BackHeroStaptPos();
     }
 
+    /// <summary>
+    /// Создание игрового поля
+    /// </summary>
+    /// <param name="length">Длинна поля</param>
+    /// <param name="width">Ширина поля</param>
     private void GenerateWorld(int length, int width)
     {
         LevelTile = Instantiate(new GameObject(), new Vector3(0, 0), new Quaternion(), transform);
@@ -61,6 +76,12 @@ public class Level : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Создание Монет на игровом поле
+    /// </summary>
+    /// <param name="numberMoney">Количество монет генерируемых на поле</param>
+    /// <param name="length">Длинна поля</param>
+    /// <param name="width">Ширина поля</param>
     private void GenerateMoney(int numberMoney, int length, int width)
     {
         bool[,] map = new bool[width, length];
@@ -102,16 +123,25 @@ public class Level : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Проверка наличия монет
+    /// </summary>
     public bool CheckMoney()
     {
         return LevelMoney.transform.childCount > 0;
     }
 
+    /// <summary>
+    /// Подбор 1 монеты
+    /// </summary>
     public void AddMoney()
     {
         score++;
     }
 
+    /// <summary>
+    /// Конец уровня
+    /// </summary>
     public void EndLevel()
     {
         UserData.score += score;
@@ -119,6 +149,9 @@ public class Level : MonoBehaviour
         loadLevel.LoadScene(0);
     }
 
+    /// <summary>
+    /// Переместить героя в центр поля
+    /// </summary>
     public void BackHeroStaptPos()
     {
         if (HeroPrefab != null) 

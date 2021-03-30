@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Класс отвечающий за переход между уровнями
+/// </summary>
 public class LoadLevel : MonoBehaviour
 {
     [SerializeField]
